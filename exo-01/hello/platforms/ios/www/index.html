@@ -39,10 +39,12 @@
 
             $(document).ready(function() {
 
+                var speed = 800;
+
                 function left() {
                     $('h1').animate({
                         right: "1000",
-                    }, 200, function(){
+                    }, speed, function(){
                         right();
                     });
                 }
@@ -50,7 +52,7 @@
                 function right() {
                     $('h1').animate({
                         right: "0",
-                    }, 200, function(){
+                    }, speed, function(){
                         left();
                     });
                 }
