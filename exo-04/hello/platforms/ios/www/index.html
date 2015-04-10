@@ -31,6 +31,14 @@
         <div>
             <img src="http://images5.fanpop.com/image/photos/26100000/Madoka-w-puella-magi-madoka-magica-26169203-1920-1080.jpg" width="500" />
             <h1 style="position: absolute; color:pink;right:0;">Welcome to my new app</h1>
+            <button class="tellmethedevice">Tell Me the device</button>
+            <p class="show">
+                <span style="display:block;" class="device">device is : <strong></strong></span>
+                <span style="display:block;" class="model">model is : <strong></strong></span>
+                <span style="display:block;" class="platform">platform is : <strong></strong></span>
+                <span style="display:block;" class="uuid">uuid is : <strong></strong></span>
+                <span style="display:block;" class="version">version is : <strong></strong></span>
+            </p>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
@@ -40,7 +48,15 @@
 
             $(document).ready(function() {
 
-                /*var speed = 800;
+                $('.tellmethedevice').on('click', function(){
+                    $('.show .device strong').empty().append(device.cordova);
+                    $('.show .model strong').empty().append(device.model);
+                    $('.show .platform strong').empty().append(device.platform);
+                    $('.show .uuid strong').empty().append(device.uuid);
+                    $('.show .version strong').empty().append(device.version);
+                });
+
+                var speed = 800;
 
                 function left() {
                     $('h1').animate({
@@ -58,7 +74,9 @@
                     });
                 }
 
-                left();*/
+                left();
+
+                document.addEventListener("deviceready", onDeviceReady, false);
             });
 
 
