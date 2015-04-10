@@ -28,8 +28,9 @@
         <title>Yo !</title>
     </head>
     <body>
-        <div class="app">
-            <h1 style="position: absolute; right:0;">Welcome to my new app</h1>
+        <div>
+            <img src="http://images5.fanpop.com/image/photos/26100000/Madoka-w-puella-magi-madoka-magica-26169203-1920-1080.jpg" width="500" />
+            <h1 style="position: absolute; color:pink;right:0;">Welcome to my new app</h1>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
@@ -43,7 +44,7 @@
 
                 function left() {
                     $('h1').animate({
-                        right: "1000",
+                        right: "-200",
                     }, speed, function(){
                         right();
                     });
@@ -51,7 +52,7 @@
 
                 function right() {
                     $('h1').animate({
-                        right: "0",
+                        right: "200",
                     }, speed, function(){
                         left();
                     });
