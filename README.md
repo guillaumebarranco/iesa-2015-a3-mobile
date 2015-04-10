@@ -15,3 +15,5 @@ Installation du plugin des splashs.
 Par défaut, les splashs et icones pour chaque appareil IOS se trouvent dans la plateform IOS (mais peut être changé dans le config.xml de l'appli et ainsi on peut prendre les images d'où on veut)
 
 Bug de compilation résolu en supprimant une image en trop (que j'avais rajoutée) dans le dossier splashs (bizarre)
+
+Intégration du plugin device qui affiche toutes les infos relatives au device (logique) tels que version cordova, modèle, plateforme, unique id et version.
