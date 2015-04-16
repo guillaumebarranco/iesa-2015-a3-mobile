@@ -17,3 +17,9 @@ Par défaut, les splashs et icones pour chaque appareil IOS se trouvent dans la 
 Bug de compilation résolu en supprimant une image en trop (que j'avais rajoutée) dans le dossier splashs (bizarre)
 
 Intégration du plugin device qui affiche toutes les infos relatives au device (logique) tels que version cordova, modèle, plateforme, unique id et version.
+
+Apprentissage des plugins network connection et contacts.
+
+Network connection est vraiment utile car grâce à lui on va pouvoir gérer la connection et non connection de l'utilisateur et agir en fonction de la réponse (plus de fonctionnalités pour un connecté mais pas de bugs pour un non connecté)
+
+La gestion des contacts peut être utile également (et niveau sécurité il y a une autorisation donc c'est cool)
