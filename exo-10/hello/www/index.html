@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+    </head>
+    <body>
+
+        <div class="app">
+            <h1>Apache Cordova</h1>
+
+            <form method="post" action="" class="add_contact">
+                <input type="text" name="name" />
+                <input type="submit" value="Save contact" />
+            </form>
+
+            <form method="post" action="" class="search_contact">
+                <input type="text" name="name" />
+                <input type="submit" value="Search contact" />
+            </form>
+
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+        <script type="text/javascript">
+
+            $('form').on('submit', function(e) {
+                e.preventDefault();
+
+                var thisclass = $(this).attr('class');
+                var inputval = $(this).find('input').val();
+
+                var the_contact;
+
+                if(thisclass == 'add_contact') {
+
+                    if(inputval != '') {
+                        alert('add_contact');
+
+                        function onSuccess(contact) {
+                            alert("Save Success");
+                        };
+
+                        function onError(contactError) {
+                            alert("Error = " + contactError.code);
+                        };
+
+                        var contact = navigator.contacts.create();
+                        contact.displayName = inputval;
+                        contact.nickname = inputval;            // specify both to support all devices
+
+                        // populate some fields
+                        var name = new ContactName();
+                        name.givenName = inputval;
+                        name.familyName = inputval;
+                        contact.name = name;
+
+                        // save to device
+                        contact.save(onSuccess,onError);
+                    } else {
+                        alert('input vide');
+                    }
+
+
+                } else {
+
+                    if(inputval != '') {
+                        alert('search_contact');
+
+                        function onSuccess(contacts) {
+                            the_contact = contacts[0];
+
+                            navigator.contacts.pickContact(function(the_contact){
+                                console.log('The following contact has been selected:' + JSON.stringify(the_contact));
+                            },function(err){
+                                console.log('Error: ' + err);
+                            });
+
+                        };
+
+                        function onError(contactError) {
+                            alert('onError!');
+                        };
+
+                        var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+
+                        // find all contacts with 'Bob' in any name field
+                        var options      = new ContactFindOptions();
+                        options.filter   = inputval;
+                        options.desiredFields = [navigator.contacts.fieldType.id];
+
+                        navigator.contacts.find(fields, onSuccess, onError, options);
+
+                    } else {
+                        alert('input vide');
+                    }
+                    
+                }
+            });
+
+        </script>
+
+    </body>
+</html>
